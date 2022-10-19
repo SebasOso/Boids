@@ -11,17 +11,17 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - StencilLayer1
+  - StencilLayer2
+  - StencilLayer3
+  - StencilLayer4
+  - Obstacle
+  - Player
+  - Unit
+  - GroundEffect
+  - StencilLayer5
+  - StencilLayer6
+  - TEST
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Character
+    uniqueID: 3020880067
     locked: 0

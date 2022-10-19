@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 public class Boids : MonoBehaviour
 {
-    #region Variables & Initializer
+
     [Header("Boid Options")]
     [SerializeField] private BoidUnit boidUnitPrefab;
     [Range(5, 5000)]
@@ -47,5 +46,5 @@ public class Boids : MonoBehaviour
             currUnit.InitializeUnit(this,Random.Range(speedRange.x, speedRange.y),i);
         }
     }
-    #endregion
+  
 }

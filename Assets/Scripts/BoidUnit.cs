@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BoidUnit : MonoBehaviour
 {
-    #region Variables & Initializer
     [Header("Info")]
     Boids myBoids;
     List<BoidUnit> neighbours = new List<BoidUnit>();
@@ -45,8 +44,6 @@ public class BoidUnit : MonoBehaviour
         calculateEgoVectorCoroutine = StartCoroutine("CalculateEgoVectorCoroutine");
     }
 
-    #endregion
-
     void Update()
     {
         if (additionalSpeed > 0)
@@ -56,7 +53,6 @@ public class BoidUnit : MonoBehaviour
         Vector3 cohesionVec = CalculateCohesionVector()*myBoids.cohesionWeight;
         Vector3 alignmentVec = CalculateAlignmentVector() * myBoids.alignmentWeight;
         Vector3 separationVec = CalculateSeparationVector() * myBoids.separationWeight;
-        // 추가적인 방향
         Vector3 boundsVec = CalculateBoundsVector() * myBoids.boundsWeight;
         Vector3 obstacleVec = CalculateObstacleVector() * myBoids.obstacleWeight;
         Vector3 egoVec = egoVector * myBoids.egoWeight;
@@ -82,7 +78,6 @@ public class BoidUnit : MonoBehaviour
     }
 
 
-    #region Calculate Vectors
     IEnumerator CalculateEgoVectorCoroutine()
     {
         speed = Random.Range(myBoids.speedRange.x, myBoids.speedRange.y);
@@ -114,7 +109,6 @@ public class BoidUnit : MonoBehaviour
         Vector3 cohesionVec = Vector3.zero;
         if (neighbours.Count > 0)
         {
-            // 이웃 unit들의 위치 더하기
             for(int i = 0; i < neighbours.Count; i++)
             {
                 cohesionVec += neighbours[i].transform.position;
@@ -122,11 +116,9 @@ public class BoidUnit : MonoBehaviour
         }
         else
         {
-            // 이웃이 없으면 vector3.zero 반환
             return cohesionVec;
         }
 
-        // 중심 위치로의 벡터 찾기
         cohesionVec /= neighbours.Count;
         cohesionVec -= transform.position;
         cohesionVec.Normalize();
@@ -138,7 +130,6 @@ public class BoidUnit : MonoBehaviour
         Vector3 alignmentVec = transform.forward;
         if (neighbours.Count > 0)
         {
-            // 이웃들이 향하는 방향의 평균 방향으로 이동
             for(int i = 0; i < neighbours.Count; i++)
             {
                 alignmentVec += neighbours[i].transform.forward;
@@ -146,7 +137,6 @@ public class BoidUnit : MonoBehaviour
         }
         else
         {
-            // 이웃이 없으면 그냥 forward로 이동
             return alignmentVec;
         }
 
@@ -160,7 +150,6 @@ public class BoidUnit : MonoBehaviour
         Vector3 separationVec = Vector3.zero;
         if (neighbours.Count > 0)
         {
-            // 이웃들을 피하는 방향으로 이동
             for(int i = 0; i < neighbours.Count; i++)
             {
                 separationVec += (transform.position - neighbours[i].transform.position);
@@ -168,7 +157,6 @@ public class BoidUnit : MonoBehaviour
         }
         else
         {
-            // 이웃이 없으면 vector.zero 반환
             return separationVec;
         }
         separationVec /= neighbours.Count;
@@ -194,7 +182,7 @@ public class BoidUnit : MonoBehaviour
         }
         return obstacleVec;
     }
-#endregion
+
 
 
 

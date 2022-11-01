@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boidUnitPrefab: {fileID: 3265471503863284463, guid: 9317b25924518604791cb68acc31e926, type: 3}
-  boidCount: 4393
+  boidCount: 921
   spawnRange: 50
   speedRange: {x: 5, y: 10}
   cohesionWeight: 1.5
